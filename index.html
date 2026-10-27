@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Planner</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">YOUR STUDY SPACE</p>
+        <h1>Student Planner <span>✦</span></h1>
+        <p class="subtitle">Plan your work. Make time for what matters.</p>
+      </div>
+      <div class="hero-icon" aria-hidden="true">📚</div>
+    </header>
+
+    <section class="stats" aria-label="Task summary">
+      <article class="stat"><span>Total tasks</span><strong>{{ total }}</strong></article>
+      <article class="stat"><span>Completed</span><strong>{{ completed }}</strong></article>
+      <article class="stat"><span>Still to do</span><strong>{{ pending }}</strong></article>
+    </section>
+
+    <section class="panel">
+      <h2>Add a task</h2>
+      <form class="task-form" action="{{ url_for('add_task') }}" method="post">
+        <label class="wide">Task name
+          <input name="title" placeholder="e.g. Revise algebra chapter" required maxlength="180">
+        </label>
+        <label>Subject
+          <input name="subject" placeholder="e.g. Mathematics" maxlength="80">
+        </label>
+        <label>Due date
+          <input name="due_date" type="date">
+        </label>
+        <button class="add-button" type="submit">+ Add task</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div><h2>My study tasks</h2><p>Small steps add up to big progress.</p></div>
+      </div>
+      {% if tasks %}
+        <ul class="task-list">
+          {% for task in tasks %}
+          <li class="task {% if task.done %}is-done{% endif %}">
+            <form action="{{ url_for('toggle_task', task_id=task.id) }}" method="post">
+              <button class="check-button" type="submit" aria-label="Mark task complete">
+                {% if task.done %}✓{% else %}○{% endif %}
+              </button>
+            </form>
+            <div class="task-details">
+              <strong>{{ task.title }}</strong>
+              <div class="task-meta">
+                <span class="subject">{{ task.subject }}</span>
+                {% if task.due_date %}<span>Due {{ task.due_date }}</span>{% endif %}
+              </div>
+            </div>
+            <form action="{{ url_for('delete_task', task_id=task.id) }}" method="post"
+                  onsubmit="return confirm('Delete this task?');">
+              <button class="delete-button" type="submit" aria-label="Delete task">×</button>
+            </form>
+          </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <div class="empty">
+          <div>📝</div>
+          <strong>Your planner is ready!</strong>
+          <p>Add your first task using the form above.</p>
+        </div>
+      {% endif %}
+    </section>
+    <footer>Made for focused study sessions <span>♥</span></footer>
+  </main>
+</body>
+</html>

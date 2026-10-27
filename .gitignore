@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+planner.db
+.venv/
+venv/
+.env

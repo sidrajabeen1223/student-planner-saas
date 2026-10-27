@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+
+:root {
+  --ink: #202443;
+  --muted: #777d98;
+  --purple: #6c63e8;
+  --purple-light: #f0efff;
+  --line: #e9eaf3;
+  --bg: #f7f8fc;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+}
+.page { width: min(920px, calc(100% - 32px)); margin: 44px auto; }
+.hero {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 34px 38px; border-radius: 24px;
+  color: white; background: linear-gradient(125deg, #655ce2, #9489f4);
+  box-shadow: 0 16px 35px #746ce526;
+}
+.eyebrow { font-size: 11px; letter-spacing: 2.2px; font-weight: 700; opacity: .8; }
+h1, h2 { font-family: 'Manrope', sans-serif; }
+h1 { margin: 7px 0 8px; font-size: clamp(28px, 5vw, 42px); letter-spacing: -1.5px; }
+h1 span { color: #ffe6a3; }
+.subtitle { margin: 0; color: #eeedff; }
+.hero-icon { font-size: 56px; background: #ffffff24; padding: 15px; border-radius: 20px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 22px 0; }
+.stat, .panel { background: white; border: 1px solid var(--line); border-radius: 18px; }
+.stat { padding: 20px 23px; display: flex; flex-direction: column; gap: 8px; }
+.stat span { color: var(--muted); font-size: 13px; }
+.stat strong { font: 800 28px 'Manrope', sans-serif; }
+.panel { padding: 26px; margin-bottom: 20px; }
+h2 { font-size: 19px; margin: 0 0 19px; }
+.task-form { display: grid; grid-template-columns: 1.4fr 1fr 1fr auto; align-items: end; gap: 12px; }
+label { display: flex; flex-direction: column; gap: 8px; font-size: 12px; font-weight: 700; color: #555b78; }
+input { width: 100%; min-width: 0; padding: 12px; border: 1px solid #dedfee; border-radius: 10px; background: #fcfcff; color: var(--ink); font: inherit; outline: none; }
+input:focus { border-color: var(--purple); box-shadow: 0 0 0 3px #6c63e81a; }
+button { cursor: pointer; font: inherit; }
+.add-button { border: 0; border-radius: 10px; padding: 13px 16px; color: white; background: var(--purple); font-weight: 700; white-space: nowrap; }
+.add-button:hover { background: #554bd0; }
+.section-heading { display: flex; justify-content: space-between; align-items: center; }
+.section-heading h2 { margin-bottom: 4px; }
+.section-heading p { color: var(--muted); font-size: 13px; margin: 0 0 18px; }
+.task-list { list-style: none; padding: 0; margin: 0; }
+.task { display: flex; align-items: center; gap: 13px; padding: 15px 0; border-top: 1px solid var(--line); }
+.task-details { flex: 1; min-width: 0; }
+.task-details strong { font-size: 14px; overflow-wrap: anywhere; }
+.task-meta { display: flex; gap: 10px; align-items: center; margin-top: 7px; color: var(--muted); font-size: 11px; }
+.subject { background: var(--purple-light); color: #5b52cb; padding: 4px 8px; border-radius: 6px; }
+.check-button, .delete-button { border: 0; background: transparent; }
+.check-button { color: var(--purple); font-size: 23px; width: 30px; }
+.delete-button { color: #a0a3b7; font-size: 24px; padding: 3px 8px; }
+.delete-button:hover { color: #d64b65; }
+.is-done .task-details strong { color: #a0a3b7; text-decoration: line-through; }
+.is-done .check-button { color: #2baf83; }
+.empty { text-align: center; padding: 28px 12px 18px; color: var(--muted); }
+.empty div { font-size: 34px; margin-bottom: 10px; }
+.empty strong { color: var(--ink); }
+.empty p { font-size: 13px; }
+footer { text-align: center; padding: 8px 0 24px; color: #9296ad; font-size: 12px; }
+footer span { color: #e67b9b; }
+@media (max-width: 700px) {
+  .page { margin: 20px auto; }
+  .hero { padding: 26px 22px; }
+  .hero-icon { font-size: 38px; padding: 10px; }
+  .stats { gap: 8px; }
+  .stat { padding: 15px 12px; }
+  .stat strong { font-size: 23px; }
+  .panel { padding: 20px 16px; }
+  .task-form { grid-template-columns: 1fr 1fr; }
+  .task-form label:first-child { grid-column: 1 / -1; }
+  .add-button { grid-column: 1 / -1; }
+}
